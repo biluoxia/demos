@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<calculate></calculate>	
+	</div>
+	<script src="./libs/vue.js"></script>
+	<script type="text/template" id="calculate-tpl">
+		<div>
+			<input type="text" v-model="num1">
+			<select name="" id="" v-model="operator">
+				<option value="1">+</option>
+				<option value="2">-</option>
+				<option value="3">*</option>
+				<option value="4">/</option>
+			</select>
+			<input type="text" v-model="num2">
+			<button @click="calc">=</button>
+			<input type="text" v-model="result">
+		</div>
+	</script>
+	<script>
+		Vue.component("calculate",{
+			template:"#calculate-tpl",
+			data(){
+				return{
+					num1:0,
+					num2:0,
+					result:0,
+					operator:"1"
+				}
+			},
+			methods:{
+				calc(){
+
+					switch(this.operator){
+						case "1":
+						this.result = parseInt(this.num1) + parseInt(this.num2);
+						break;
+						case "2":
+						this.result = parseInt(this.num1) - parseInt(this.num2);
+						break;
+						case "3":
+						this.result = parseInt(this.num1) * parseInt(this.num2);
+						break;
+						case "4":
+						this.result = parseInt(this.num1) / parseInt(this.num2);
+						break;
+					}
+				}
+			}
+		})
+
+		var vm = new Vue({
+			el:"#app",
+			data:{
+
+			}
+		})
+	</script>
+</body>
+</html>
